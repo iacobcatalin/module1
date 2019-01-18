@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Page Title</title>
+</head>
+<style>
+    p {
+        background: green;
+        padding: 10px;
+        font-size: 20px;
+    }
+
+    span {
+        background: red;
+        display: inline-block;
+        width: 100px;
+        height: 20px;
+        overflow: hidden;
+    }
+
+    ul {
+        margin: 0;
+        padding: 0;
+    }
+
+    li {
+        display: inline-block;
+        background: yellow;
+        padding: 5px;
+    }
+
+    /* li:hover {
+        background: red;
+    } */
+</style>
+<script>
+    var ul;
+    var li;
+
+    document.addEventListener("DOMContentLoaded", function (event) {
+        ul = document.getElementsByTagName('ul')[0];
+        li = ul.getElementsByTagName('li');
+        addListenerToListEvents();
+    });
+
+    function addListenerToListEvents() {
+        var listItem;
+        ul.addEventListener('mouseover',liMouseOver);
+        ul.addEventListener('mouseout',liMouseOut);
+        ul.addEventListener('click',liClick);
+        for (var i = 0; i < li.length; i++) {
+            listItem = li[i];
+            // listItem.addEventListener('mouseover',liMouseOver);
+            // listItem.addEventListener('mouseout',liMouseOut);
+            // listItem.addEventListener('click',liClick);
+        }
+    }
+
+    function liMouseOver(event){
+        // console.log(event.target);
+        if(event.target.className.indexOf('menuitem')>=0){
+            event.target.style.background = 'red';
+        }
+    }
+
+    function liMouseOut(event){
+        // console.log(event.target);
+    
+        if(event.target.className.indexOf('menuitem')>=0){
+            event.target.style.background = 'yellow';
+        }
+
+    }
+
+    function liClick(){
+        if(event.target.className.indexOf('menuitem') == -1){
+            return;
+        }
+        var menuNumber = event.target.className.substr(8);
+        var p = document.getElementsByClassName('paragraph' + menuNumber)[0];
+        p.style.background = '#' + parseInt(Math.random() * 0xffffff).toString(16);
+        console.log(p);
+    }
+</script>
+
+<body>
+
+    <ul>
+        <li class = 'menuitem1'> elementul 1 </li>
+        <li class = 'menuitem2'> elementul 2 </li>
+        <li class = 'menuitem3'> elementul 3 </li>
+        <li class = 'menuitem4'> elementul 4 </li>
+    </ul>
+    <div>div</div>
+    <span>span</span>
+    <span>span</span>
+    <span>span</span>
+
+    <p class ='paragraph1'> p </p>
+    <p class ='paragraph2'> p </p>
+    <p class ='paragraph3'> p </p>
+    <p class ='paragraph4'> p </p>
+
+</body>
+
+</html>
+
+<!-- elemente de tip block: div, p, li ... -->
+<!-- elemente de tip inline: ... -->
+<!-- div se foloseste pentru a grupa mai multe elemente; intr-un div poti pune mai multe chestii -->
+<!-- marginile la p se comaseaza -->
+<!-- 1em unitate de masura in html -->
+<!-- spatiile in span taie spatiile -->
+<!-- size: points, pixels, procente,etc -->
+<!-- linter - to be checked; -->
+<!-- css selector priority -->
+<!-- dom content logger -->
+<!-- addEventListener - functia asta supne cand se termina de incarcta dom-ul -->
+<!-- valori si referinte in js -->
+<!-- bubling & capture -->
+<!--  -->
