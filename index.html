@@ -22,6 +22,7 @@
     ul {
         margin: 0;
         padding: 0;
+        user-select: none;
     }
 
     li {
@@ -59,17 +60,20 @@
 
     function liMouseOver(event){
         // console.log(event.target);
-        if(event.target.className.indexOf('menuitem')>=0){
-            event.target.style.background = 'red';
+        if(event.target.className.indexOf('menuitem') == -1){
+            return;
         }
+        
+            event.target.style.background = 'red';
     }
 
     function liMouseOut(event){
         // console.log(event.target);
-    
-        if(event.target.className.indexOf('menuitem')>=0){
-            event.target.style.background = 'yellow';
+        if(event.target.className.indexOf('menuitem') == -1){
+            return;
         }
+        
+            event.target.style.background = 'yellow';
 
     }
 
@@ -79,7 +83,10 @@
         }
         var menuNumber = event.target.className.substr(8);
         var p = document.getElementsByClassName('paragraph' + menuNumber)[0];
-        p.style.background = '#' + parseInt(Math.random() * 0xffffff).toString(16);
+        
+        setTimeout(() => {
+            p.style.background = '#' + parseInt(Math.random() * 0xffffff).toString(16);
+        }, 500);
         console.log(p);
     }
 </script>
